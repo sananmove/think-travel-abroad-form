@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Think Travel Abroad | Request Information</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0E2A47;
+    --navy-2: #163A5F;
+    --teal: #0D7A80;
+    --teal-deep: #095E63;
+    --sky: #EEF4F9;
+    --white: #FFFFFF;
+    --text: #1B2B3A;
+    --muted: #5B6B7B;
+    --border: #D5E0EA;
+    --field-border: #B9C8D6;
+    --error: #B42318;
+    --font: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--sky);
+  }
+
+  .page {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: minmax(300px, 5fr) minmax(0, 7fr);
+  }
+
+  /* ---------- Left panel ---------- */
+  .intro {
+    background: var(--navy);
+    color: #E6EEF6;
+    padding: 56px 56px 48px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #FFFFFF;
+    letter-spacing: -0.01em;
+  }
+
+  .logo-mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--teal);
+    display: grid;
+    place-items: center;
+  }
+
+  .logo-mark svg { width: 18px; height: 18px; }
+
+  h1 {
+    font-size: clamp(2rem, 3.6vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    margin: 56px 0 16px;
+    max-width: 16ch;
+  }
+
+  .intro p.lede {
+    margin: 0 0 40px;
+    color: #C4D4E3;
+    max-width: 42ch;
+  }
+
+  /* Route motif: origin to destination */
+  .route {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 18px;
+    margin: 0 0 44px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .route::before {
+    content: "";
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    width: 2px;
+    margin: 8px auto;
+    background: repeating-linear-gradient(to bottom, #5F86AE 0 6px, transparent 6px 12px);
+  }
+
+  .route li {
+    grid-column: 1 / span 2;
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .route li .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #7FB8C0;
+    background: var(--navy);
+    margin-top: 6px;
+  }
+
+  .route li.end .dot { background: #7FB8C0; }
+
+  .route strong { display: block; color: #FFFFFF; font-weight: 700; }
+  .route span { color: #AFC3D6; font-size: 0.93rem; }
+
+  .assurances {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding-top: 24px;
+    display: grid;
+    gap: 14px;
+    font-size: 0.93rem;
+    color: #C4D4E3;
+  }
+
+  .assurances div { display: flex; gap: 12px; align-items: center; }
+
+  .assurances svg { flex: none; width: 18px; height: 18px; color: #7FD1D6; }
+
+  /* ---------- Right panel ---------- */
+  .form-side {
+    padding: 56px clamp(20px, 5vw, 64px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 640px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(14, 42, 71, 0.04), 0 12px 32px rgba(14, 42, 71, 0.06);
+    padding: 40px 40px 36px;
+  }
+
+  .card-head h2 {
+    margin: 0 0 6px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+  }
+
+  .card-head p {
+    margin: 0 0 30px;
+    color: var(--muted);
+    font-size: 0.97rem;
+  }
+
+  fieldset {
+    border: 0;
+    margin: 0 0 30px;
+    padding: 0;
+  }
+
+  .section-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 18px;
+  }
+
+  .full { grid-column: 1 / -1; }
+
+  label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .req { color: var(--teal-deep); margin-left: 2px; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    font: inherit;
+    font-size: 0.96rem;
+    color: var(--text);
+    background: var(--white);
+    border: 1px solid var(--field-border);
+    border-radius: 8px;
+    padding: 11px 13px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                      linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+    background-position: calc(100% - 18px) 52%, calc(100% - 13px) 52%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 36px;
+  }
+
+  textarea { min-height: 108px; resize: vertical; }
+
+  input::placeholder, textarea::placeholder { color: #8A9AAB; }
+
+  input:hover, select:hover, textarea:hover { border-color: #8FA5BA; }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(13, 122, 128, 0.18);
+  }
+
+  [aria-invalid="true"] { border-color: var(--error) !important; }
+
+  .hint { font-size: 0.8rem; color: var(--muted); margin-top: 5px; }
+
+  .error {
+    font-size: 0.83rem;
+    color: var(--error);
+    margin-top: 5px;
+  }
+
+  /* Choice chips for length of stay */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chips label {
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.92rem;
+    padding: 9px 16px;
+    border: 1px solid var(--field-border);
+    border-radius: 999px;
+    background: var(--white);
+    cursor: pointer;
+    color: var(--text);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+
+  .chips input { position: absolute; opacity: 0; pointer-events: none; }
+
+  .chips label:hover { border-color: var(--navy-2); }
+
+  .chips label:has(input:checked) {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #FFFFFF;
+  }
+
+  .chips label:has(input:focus-visible) {
+    box-shadow: 0 0 0 3px rgba(13, 122, 128, 0.35);
+  }
+
+  .consent {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--sky);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .consent input {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    flex: none;
+    accent-color: var(--teal);
+  }
+
+  .consent label {
+    margin: 0;
+    font-weight: 400;
+    font-size: 0.89rem;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .hp {
+    position: absolute !important;
+    left: -10000px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .actions { margin-top: 6px; }
+
+  button[type="submit"] {
+    width: 100%;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #FFFFFF;
+    background: var(--teal);
+    border: 0;
+    border-radius: 8px;
+    padding: 14px 24px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  button[type="submit"]:hover { background: var(--teal-deep); }
+  button[type="submit"]:disabled { opacity: 0.6; cursor: wait; }
+
+  button:focus-visible, .chips label:focus-within, .consent label:focus-within {
+    outline: 3px solid rgba(13, 122, 128, 0.35);
+    outline-offset: 2px;
+  }
+
+  .privacy {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .status {
+    min-height: 1.3em;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--error);
+    text-align: center;
+  }
+
+  .thanks {
+    display: none;
+    width: 100%;
+    max-width: 640px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 48px 40px;
+    text-align: left;
+  }
+
+  .thanks .check {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #E3F4F4;
+    color: var(--teal-deep);
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+  }
+
+  .thanks h2 {
+    margin: 0 0 10px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+
+  .thanks p { margin: 0; color: var(--muted); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .page { grid-template-columns: 1fr; }
+    .intro { padding: 40px 24px 36px; }
+    h1 { margin-top: 28px; }
+    .assurances { margin-top: 32px; }
+  }
+
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 28px 20px 24px; }
+    .form-side { padding: 28px 16px 48px; }
+    .thanks { padding: 32px 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <aside class="intro">
+    <div class="logo">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-8-8 20-2-8-10-4z"/></svg>
+      </span>
+      Think Travel Abroad
+    </div>
+
+    <h1>Plan your professional journey abroad.</h1>
+    <p class="lede">Share your goals and travel preferences. A program advisor will respond with options that fit your career stage, budget, and schedule.</p>
+
+    <ul class="route" aria-label="Typical journey">
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <div><strong>Share your goals</strong><span>Tell us your field, timing, and destination interests.</span></div>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <div><strong>Review your options</strong><span>Receive a tailored shortlist from a dedicated advisor.</span></div>
+      </li>
+      <li class="end">
+        <span class="dot" aria-hidden="true"></span>
+        <div><strong>Begin your program</strong><span>We handle placement, logistics, and support on the ground.</span></div>
+      </li>
+    </ul>
+
+    <div class="assurances">
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Reply within two business days
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Your details are kept private and never sold
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        No fees to request information
+      </div>
+    </div>
+  </aside>
+
+  <main class="form-side">
+    <form class="card" id="leadForm" novalidate>
+      <div class="card-head">
+        <h2>Request information</h2>
+        <p>All fields marked with an asterisk are required.</p>
+      </div>
+
+      <!-- Honeypot: hidden from people, filled in by most bots -->
+      <input type="text" name="hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <fieldset>
+        <h3 class="section-title">Traveler details</h3>
+        <div class="grid">
+          <div>
+            <label for="fullName">Full name<span class="req">*</span></label>
+            <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+            <div class="error" data-error-for="fullName"></div>
+          </div>
+          <div>
+            <label for="email">Email address<span class="req">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+            <div class="error" data-error-for="email"></div>
+          </div>
+          <div>
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 123 4567">
+            <div class="error" data-error-for="phone"></div>
+          </div>
+          <div>
+            <label for="country">Country of residence<span class="req">*</span></label>
+            <input id="country" name="country" type="text" autocomplete="country-name" required>
+            <div class="error" data-error-for="country"></div>
+          </div>
+          <div class="full">
+            <label for="careerStage">Career stage<span class="req">*</span></label>
+            <select id="careerStage" name="careerStage" required>
+              <option value="">Select one</option>
+              <option>Student or recent graduate</option>
+              <option>Early career (0 to 3 years)</option>
+              <option>Mid-career professional</option>
+              <option>Senior leader or manager</option>
+              <option>Career changer</option>
+            </select>
+            <div class="error" data-error-for="careerStage"></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <h3 class="section-title">Program and travel preferences</h3>
+        <div class="grid">
+          <div class="full">
+            <label for="program">Program of interest<span class="req">*</span></label>
+            <select id="program" name="program" required>
+              <option value="">Select one</option>
+              <option>Professional internship abroad</option>
+              <option>Work and learn placement</option>
+              <option>Language and professional immersion</option>
+              <option>Leadership or executive study tour</option>
+              <option>Volunteer with professional skills</option>
+              <option>Not sure yet, please advise</option>
+            </select>
+            <div class="error" data-error-for="program"></div>
+          </div>
+          <div>
+            <label for="destination">Preferred destination</label>
+            <input id="destination" name="destination" type="text" placeholder="For example, Germany or Japan">
+          </div>
+          <div>
+            <label for="travelWindow">Preferred travel window</label>
+            <select id="travelWindow" name="travelWindow">
+              <option value="">Flexible</option>
+              <option>Within 3 months</option>
+              <option>3 to 6 months</option>
+              <option>6 to 12 months</option>
+              <option>More than 12 months</option>
+            </select>
+          </div>
+          <div class="full">
+            <label id="durationLabel">Length of stay</label>
+            <div class="chips" role="radiogroup" aria-labelledby="durationLabel">
+              <label><input type="radio" name="duration" value="2 to 4 weeks"> 2 to 4 weeks</label>
+              <label><input type="radio" name="duration" value="1 to 3 months"> 1 to 3 months</label>
+              <label><input type="radio" name="duration" value="3 to 6 months"> 3 to 6 months</label>
+              <label><input type="radio" name="duration" value="6 months or more"> 6 months or more</label>
+            </div>
+          </div>
+          <div class="full">
+            <label for="message">Additional details</label>
+            <textarea id="message" name="message" maxlength="1000" placeholder="Career goals, languages you speak, budget range, or questions"></textarea>
+            <div class="hint">Optional. Up to 1,000 characters.</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <div class="consent">
+          <input id="consent" name="consent" type="checkbox" required>
+          <label for="consent">I agree that Think Travel Abroad may contact me by email or phone about programs that match my request. I can unsubscribe at any time.<span class="req">*</span></label>
+        </div>
+        <div class="error" data-error-for="consent"></div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" id="submitBtn">Submit request</button>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+        <p class="privacy">We use your information only to respond to this request.</p>
+      </div>
+    </form>
+
+    <section class="thanks" id="thanks" tabindex="-1">
+      <div class="check" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+      </div>
+      <h2>Your request has been received.</h2>
+      <p>A program advisor will contact you within two business days at the email address you provided.</p>
+    </section>
+  </main>
+
+</div>
+
+<script>
+  // ============================================================
+  // SETUP: paste the Web App URL from Google Apps Script here.
+  // See apps-script-Code.gs for instructions.
+  // ============================================================
+  const CONFIG = {
+    endpoint: "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"
+  };
+
+  const form = document.getElementById("leadForm");
+  const statusEl = document.getElementById("status");
+  const submitBtn = document.getElementById("submitBtn");
+  const thanks = document.getElementById("thanks");
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE_RE = /^\+?[0-9 ()\-]{7,20}$/;
+
+  function setError(name, message) {
+    const field = form.elements[name];
+    const slot = form.querySelector(`[data-error-for="${name}"]`);
+    if (field) field.setAttribute("aria-invalid", message ? "true" : "false");
+    if (slot) slot.textContent = message || "";
+  }
+
+  function validate(data) {
+    let ok = true;
+    const rules = {
+      fullName: () => data.fullName.trim().length >= 2 || "Enter your full name.",
+      email: () => EMAIL_RE.test(data.email.trim()) || "Enter a valid email address, such as name@example.com.",
+      phone: () => !data.phone || PHONE_RE.test(data.phone.trim()) || "Enter a phone number using digits, spaces, or an optional leading +.",
+      country: () => data.country.trim().length >= 2 || "Enter your country of residence.",
+      careerStage: () => !!data.careerStage || "Select your career stage.",
+      program: () => !!data.program || "Select a program, or choose 'Not sure yet'.",
+      consent: () => data.consent || "Please agree so we can contact you about your request."
+    };
+
+    for (const [name, rule] of Object.entries(rules)) {
+      const result = rule();
+      if (result === true) {
+        setError(name, "");
+      } else {
+        setError(name, result);
+        ok = false;
+      }
+    }
+    return ok;
+  }
+
+  function collect() {
+    const fd = new FormData(form);
+    const duration = form.querySelector('input[name="duration"]:checked');
+    return {
+      fullName: fd.get("fullName") || "",
+      email: fd.get("email") || "",
+      phone: fd.get("phone") || "",
+      country: fd.get("country") || "",
+      careerStage: fd.get("careerStage") || "",
+      program: fd.get("program") || "",
+      destination: fd.get("destination") || "",
+      travelWindow: fd.get("travelWindow") || "",
+      duration: duration ? duration.value : "",
+      message: fd.get("message") || "",
+      consent: fd.get("consent") === "on",
+      hp: fd.get("hp") || "",
+      sourcePage: window.location.href
+    };
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    statusEl.textContent = "";
+
+    const data = collect();
+
+    // Honeypot: silently show success for bots
+    if (data.hp) {
+      showThanks();
+      return;
+    }
+
+    if (!validate(data)) {
+      statusEl.textContent = "Please correct the highlighted fields.";
+      const firstInvalid = form.querySelector('[aria-invalid="true"]');
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    if (CONFIG.endpoint.startsWith("PASTE_")) {
+      statusEl.textContent = "The form is not connected yet. Add the Apps Script URL to CONFIG.endpoint.";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+
+    try {
+      // Apps Script web apps do not return CORS headers, so the request
+      // is sent with no-cors and a text/plain body. It still reaches the sheet.
+      await fetch(CONFIG.endpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(data)
+      });
+      showThanks();
+    } catch (err) {
+      statusEl.textContent = "Your request could not be sent. Please check your connection and try again.";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit request";
+    }
+  });
+
+  function showThanks() {
+    form.style.display = "none";
+    thanks.style.display = "block";
+    thanks.focus();
+  }
+</script>
+</body>
+</html>
